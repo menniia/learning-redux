@@ -30,7 +30,7 @@ To run this project locally, follow these steps:
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/yourusername/redux-road.git
+git clone https://github.com/menniia/redux-road.git
 cd redux-road
 ```
 
