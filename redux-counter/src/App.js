@@ -1,4 +1,3 @@
-import './App.css';
 import { decrement, increment } from './store';
 import { connect } from "react-redux"
 
@@ -7,7 +6,7 @@ function App({ count, incrementerClicked, decrementerClicked }) {
   return (
     <main>
       <p>{count}</p>
-      <button id='incrementer' onClick={incrementerClicked}>+</button>
+      <button id='incrementer' onClick={incrementerClicked} style={{ color: "red" }}>+</button>
       <button id='decrementer' onClick={decrementerClicked}>-</button>
     </main>
 
