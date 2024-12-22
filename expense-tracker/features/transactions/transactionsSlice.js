@@ -21,10 +21,8 @@ const transactionsSlice = createSlice({
     initialState,
     reducers: {
         addTransaction: (state, action) => {
-            state.push({
-                id: action.payload.id,
-                category: action.payload.category
-            })
+            const { id, category, amount } = action.payload;
+            state[category].push({ id, category, amount });
         },
         deleteTransaction: (state, action) => {
             const { category, id } = action.payload;
