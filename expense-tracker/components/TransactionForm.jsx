@@ -71,6 +71,7 @@ const TransactionForm = () => {
                     </div>
 
                 </div>
+                <button>Add Transaction</button>
             </form>
         </section>
     )

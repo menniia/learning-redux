@@ -33,7 +33,7 @@ const Budget = ({ budget }) => {
                         type="number"
                         value={amount}
                         onChange={(event) => setAmount(event.currentTarget.value)}
-                        step="0.01"
+                        step="0.5"
                     />
                     <button>Update</button>
                 </form>
