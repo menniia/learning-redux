@@ -9,7 +9,20 @@ export const loadCommentsForArticleId = createAsyncThunk(
     }
 )
 
-export const commentSlice = createSlice({
+export const postCommentForArticleId = createAsyncThunk(
+    "comments/postCommentForArticleId",
+    async ({ articleId, comment }) => {
+        const requestBody = JSON.stringify({ comment: comment });
+        const data = await fetch(`api/articles/${articleId}/comments`, {
+            method: "POST",
+            body: requestBody
+        });
+        const json = await data.json();
+        return json;
+    }
+)
+
+export const commentsSlice = createSlice({
     name: "comments",
     initialState: {
         byArticleId: {},
@@ -32,6 +45,20 @@ export const commentSlice = createSlice({
                 state.isLoadingComments = false;
                 state.failedToLoadComments = true;
             })
+            .addCase(postCommentForArticleId.pending, (state) => {
+                state.createCommentIsPending = true;
+                state.failedToCreateComment = false;
+            })
+            .addCase(postCommentForArticleId.fulfilled, (state, action) => {
+                state.createCommentIsPending = false;
+                state.failedToCreateComment = false;
+                const { articleId } = action.payload;
+                state.byArticleId[articleId].push(action.payload);
+            })
+            .addCase(postCommentForArticleId.rejected, (state) => {
+                state.createCommentIsPending = false;
+                state.failedToCreateComment = true;
+            })
     }
 })
 
@@ -39,4 +66,4 @@ export const selectComments = state => state.comments.byArticleId;
 export const isLoadingComments = state => state.comments.isLoadingComments;
 export const creatingCommentIsPending = state => state.comments.creatingCommentIsPending;
 
-export default commentSlice.reducer;
+export default commentsSlice.reducer;

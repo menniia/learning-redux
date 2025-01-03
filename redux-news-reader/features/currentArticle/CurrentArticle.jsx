@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { isLoadingCurrentArticle, selectCurrentArticle } from "./currentArticleSlice";
+import FullArticle from "../../components/FullArticle";
 
 const CurrentArticle = () => {
     const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const CurrentArticle = () => {
         return null;
     }
     return (
-
+        <FullArticle article={article} />
     )
 };
 
